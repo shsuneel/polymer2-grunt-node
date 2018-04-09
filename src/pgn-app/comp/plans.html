@@ -1,0 +1,86 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<dom-module id="plans-comp">
+    <template>
+        <link rel="stylesheet" type="text/css" href="./src/pgn-app/comp/css/plan.css">
+        <div>
+            <template is="dom-repeat" items={{articles}}>
+                <article class$="[[item.class.article]]">
+                    <h1 class$=[[item.class.title]]>{{item.title}}</h1>
+                    <h2 class$="[[item.class.price]]" >{{item.price}}</h2>
+                    <h3>{{item.desc}}</h3>
+                    <ul class="plan__features">
+                        <template is="dom-repeat" items={{item.features}}>
+                            <li>{{item}}</li>
+                        </template>
+                    </ul>
+                    <div>
+                        <button class="button">CHOOSE PLAN</button>
+                    </div>
+                </article>
+            </template>
+        </div>
+    </template>
+    <script>
+        class PlansComponent extends Polymer.Element {
+            static get is() {
+                return 'plans-comp';
+            }
+            static get properties() {
+                return {
+                    articles: {
+                        type: Array,
+                        value() {
+                            return [{
+                                    title: 'FREE',
+                                    class: {
+                                        article: 'plan'
+                                    },
+                                    price: '$99/month',
+                                    desc: 'For hobby projects or small teams.',
+                                    features: [
+                                        '1 Workspace',
+                                        'Unlimited Traffic',
+                                        '10GB Storage',
+                                        'Basic Support'
+                                    ]
+                                },
+                                {
+                                    title: 'RECOMMENDED',
+                                    class: {
+                                        article: 'plan plan--highlighted',
+                                        title: 'plan__title plan__anotation',
+                                        price: 'plan__price'
+                                    },
+                                    price: '$99/month',
+                                    desc: 'For ambitious projects.',
+                                    features: [
+                                        '5 Workspaces',
+                                        'Unlimited Traffic',
+                                        '100GB Storage',
+                                        'Plus Support'
+                                    ]
+                                },
+                                {
+                                    title: 'PREMIUM',
+                                    class: {
+                                        article: 'plan'
+                                    },
+                                    price: '$99/month',
+                                    desc: 'Your enterprise solution.',
+                                    features: [
+                                        '10 Workspace',
+                                        'Unlimited Traffic',
+                                        '500GB Storage',
+                                        'Basic Support'
+                                    ]
+                                }
+                            ];
+                        }
+                    }
+                }
+            }
+        }
+        window.customElements.define(PlansComponent.is, PlansComponent);
+    </script>
+</dom-module>

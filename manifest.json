@@ -1,0 +1,7 @@
+{
+  "name": "polymer2-grunt-node",
+  "short_name": "polymer2-grunt-node",
+  "description": "polymer2-grunt-node",
+  "start_url": "/",
+  "display": "standalone"
+}

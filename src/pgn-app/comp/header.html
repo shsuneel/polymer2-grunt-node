@@ -1,0 +1,35 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<dom-module id="main-header-comp">
+    <template>
+        <link rel="stylesheet" type="text/css" href="./src/pgn-app/comp/css/header.css">
+        <header class="main-header">
+                <div>
+                    <a href="index.html" class="main-header__brand">
+                        uHost
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="main-nav__items">
+                        <li class="main-nav__item">
+                            <a href="packages/index.html">Packages</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="customers/index.html">Customers</a>
+                        </li>
+                        <li class="main-nav__item main-nav__item--cta">
+                            <a href="start-hosting/index.html">Start Hosting</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+    </template>
+    <script>
+        class MainHeaderComponent extends Polymer.Element {
+            static get is() {
+                return 'main-header-comp'
+            }
+        }
+        window.customElements.define(MainHeaderComponent.is, MainHeaderComponent);
+    </script>
+
+</dom-module>
