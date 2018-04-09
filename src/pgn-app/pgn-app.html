@@ -1,24 +1,26 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="./comp/header.html">
+<link rel="import" href="./comp/productOverview.html">
 <link rel="import" href="./comp/plans.html">
+<link rel="import" href="./comp/keyFeatures.html">
+<link rel="import" href="./comp/footer.html">
 <dom-module id="pgn-app">
   <template>
     <link rel="stylesheet" type="text/css" href="./src/pgn-app/comp/css/app.css">
-    <main-header-comp></main-header-comp>
+    <header-comp></header-comp>
     <main>
-        <section id="product-overview">
-            <h1>Get the freedom you deserve.</h1>
-        </section>
-        <section id="plans">
-            <h1 class="section-title">Choose Your Plan</h1>
-            <plans-comp></plans-comp>
-        </section>
+      <product-overview-comp></product-overview-comp>
+      <plans-comp></plans-comp>
+      <key-features-comp></key-features-comp>
     </main>
+    <footer-comp></footer-comp>
   </template>
 
   <script>
     class PgnApp extends Polymer.Element {
-      static get is() { return 'pgn-app'; }
+      static get is() {
+        return 'pgn-app';
+      }
       static get properties() {
         return {
           prop1: {

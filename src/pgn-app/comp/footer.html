@@ -1,0 +1,28 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<dom-module id="footer-comp">
+    <template>
+        <link rel="stylesheet" type="text/css" href="./src/pgn-app/comp/css/footer.css">
+        <footer>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="">Support</a>
+                    </li>
+                    <li>
+                        <a href="">Terms of Use</a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+        
+    </template>
+    <script>
+        class FooterComponent extends Polymer.Element {
+            static get is() {
+                return 'footer-comp'
+            }
+        }
+        window.customElements.define(FooterComponent.is, FooterComponent);
+    </script>
+
+</dom-module>

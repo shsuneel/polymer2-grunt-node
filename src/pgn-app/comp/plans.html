@@ -3,23 +3,27 @@
 <dom-module id="plans-comp">
     <template>
         <link rel="stylesheet" type="text/css" href="./src/pgn-app/comp/css/plan.css">
-        <div>
-            <template is="dom-repeat" items={{articles}}>
-                <article class$="[[item.class.article]]">
-                    <h1 class$=[[item.class.title]]>{{item.title}}</h1>
-                    <h2 class$="[[item.class.price]]" >{{item.price}}</h2>
-                    <h3>{{item.desc}}</h3>
-                    <ul class="plan__features">
-                        <template is="dom-repeat" items={{item.features}}>
-                            <li>{{item}}</li>
-                        </template>
-                    </ul>
-                    <div>
-                        <button class="button">CHOOSE PLAN</button>
-                    </div>
-                </article>
-            </template>
-        </div>
+        <section id="plans">
+            <h1 class="section-title">Choose Your Plan</h1>
+            <div>
+                <template is="dom-repeat" items={{articles}}>
+
+                    <article class$="[[item.class.article]]">
+                        <h1 class$=[[item.class.title]]>{{item.title}}</h1>
+                        <h2 class$="[[item.class.price]]">{{item.price}}</h2>
+                        <h3>{{item.desc}}</h3>
+                        <ul class="plan__features">
+                            <template is="dom-repeat" items={{item.features}}>
+                                <li>{{item}}</li>
+                            </template>
+                        </ul>
+                        <div>
+                            <button class="button">CHOOSE PLAN</button>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </section>
     </template>
     <script>
         class PlansComponent extends Polymer.Element {
@@ -34,7 +38,8 @@
                             return [{
                                     title: 'FREE',
                                     class: {
-                                        article: 'plan'
+                                        article: 'plan',
+                                            price: 'plan__price'
                                     },
                                     price: '$99/month',
                                     desc: 'For hobby projects or small teams.',
@@ -49,8 +54,8 @@
                                     title: 'RECOMMENDED',
                                     class: {
                                         article: 'plan plan--highlighted',
-                                        title: 'plan__title plan__anotation',
-                                        price: 'plan__price'
+                                            title: 'plan__title plan__anotation',
+                                            price: 'plan__price'
                                     },
                                     price: '$99/month',
                                     desc: 'For ambitious projects.',
@@ -64,7 +69,8 @@
                                 {
                                     title: 'PREMIUM',
                                     class: {
-                                        article: 'plan'
+                                        article: 'plan',
+                                            price: 'plan__price'
                                     },
                                     price: '$99/month',
                                     desc: 'Your enterprise solution.',

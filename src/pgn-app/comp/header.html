@@ -1,5 +1,5 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
-<dom-module id="main-header-comp">
+<dom-module id="header-comp">
     <template>
         <link rel="stylesheet" type="text/css" href="./src/pgn-app/comp/css/header.css">
         <header class="main-header">
@@ -24,12 +24,12 @@
             </header>
     </template>
     <script>
-        class MainHeaderComponent extends Polymer.Element {
+        class HeaderComponent extends Polymer.Element {
             static get is() {
-                return 'main-header-comp'
+                return 'header-comp'
             }
         }
-        window.customElements.define(MainHeaderComponent.is, MainHeaderComponent);
+        window.customElements.define(HeaderComponent.is, HeaderComponent);
     </script>
 
 </dom-module>

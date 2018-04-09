@@ -1,3 +1,11 @@
+$sectionTitleColor: #2ddf5c; 
+$antonFont: 'Anton', sans-serif;
+
+.section-title {
+    color: $sectionTitleColor;
+    text-align: center;
+}
+
 .plan {
     background-color: #d5ffdc;
     text-align: center;
