@@ -5,3 +5,4 @@ node_modules/
 bower_components/
 src/pgn-app/course/
 src/pgn-app/sample/
+src/pgn-app/comp/css/

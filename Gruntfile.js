@@ -12,6 +12,7 @@
               'src/pgn-app/comp/css/app.css': 'src/pgn-app/comp/scss/app.scss',
               'src/pgn-app/comp/css/productOverview.css': 'src/pgn-app/comp/scss/productOverview.scss',
               'src/pgn-app/comp/css/plan.css': 'src/pgn-app/comp/scss/plan.scss',
+              'src/pgn-app/comp/css/footer.css': 'src/pgn-app/comp/scss/footer.scss',
               'src/pgn-app/comp/css/keyFeatures.css': 'src/pgn-app/comp/scss/keyFeatures.scss'
             }
           }
