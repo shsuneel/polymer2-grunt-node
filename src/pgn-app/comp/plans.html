@@ -7,8 +7,7 @@
             <h1 class="section-title">Choose Your Plan</h1>
             <div>
                 <template is="dom-repeat" items={{articles}}>
-
-                    <article class$="[[item.class.article]]">
+                    <article id="article_{{item.title}}" class$="[[item.class.article]]">
                         <h1 class$=[[item.class.title]]>{{item.title}}</h1>
                         <h2 class$="[[item.class.price]]">{{item.price}}</h2>
                         <h3>{{item.desc}}</h3>
@@ -18,7 +17,7 @@
                             </template>
                         </ul>
                         <div>
-                            <button class="button">CHOOSE PLAN</button>
+                            <button id="{{item.title}}_{{index}}" on-click="handlePlanChange" class="button">CHOOSE PLAN</button>
                         </div>
                     </article>
                 </template>
@@ -30,8 +29,56 @@
             static get is() {
                 return 'plans-comp';
             }
+
+            handlePlanChange(event) {
+                var currentSelectedPlanIndex = event.currentTarget.id.split('_')[1];
+                if (currentSelectedPlanIndex !== this.lastSelectedPlanIndex) {
+                    this.resetPlanClasses(currentSelectedPlanIndex, 'normal');
+                    this.resetPlanClasses(this.lastSelectedPlanIndex, 'high');
+                    this.set('lastSelectedPlanIndex', currentSelectedPlanIndex);
+                }
+            }
+
+            resetPlanClasses(index, type) {
+                var path = this.planClassPath.replace('-', index),
+                        articleClass = path + '.article',
+                        titleClass = path + '.title',
+                        priceClass = path + '.price';
+                    this.set(articleClass, type === 'normal' ? this.plan_highlighted.article: this.plan_normal.article);
+                    this.set(priceClass, type === 'normal' ? this.plan_highlighted.price: this.plan_normal.price);
+                    this.set(titleClass, type === 'normal' ? this.plan_highlighted.title: this.plan_normal.title);
+            }
+
             static get properties() {
                 return {
+                    planClassPath: {
+                        value() {
+                            return 'articles.-.class'
+                        }
+                    },
+                    plan_highlighted: {
+                        value() {
+                            return {
+                                article: 'plan plan--highlighted',
+                                title: 'plan__title plan__anotation',
+                                price: 'plan__price'
+                            }
+                        }
+                    },
+                    plan_normal: {
+                        value() {
+                            return {
+                                article: 'plan',
+                                title: 'plan__title',
+                                price: ''
+                            }
+                        }
+                    },
+                    lastSelectedPlanIndex: {
+                        value() {
+                            return 1;
+                        }
+                    },
                     articles: {
                         type: Array,
                         value() {
