@@ -1,24 +1,21 @@
 # \<polymer2-grunt-node\>
 
-polymer2-grunt-node
+```
+    This is sample application with
+    Polymer 2
+    Node -- express
+    Grunt
+```
 
 ## Install the Polymer-CLI
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
-
-## Viewing Your Application
-
-```
-$ polymer serve
-```
+## polymer serve -> to serve your application locally.
 
 ## Building Your Application
 
 ```
 $ polymer build
 ```
-
-This will create builds of your application in the `build/` directory, optimized to be served in production. You can then serve the built versions by giving `polymer serve` a folder to serve from:
 
 ```
 $ polymer serve build/default
@@ -30,4 +27,8 @@ $ polymer serve build/default
 $ polymer test
 ```
 
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+## Running node server
+
+```
+$ npm start
+```
