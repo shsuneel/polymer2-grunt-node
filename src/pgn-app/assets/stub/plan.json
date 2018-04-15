@@ -1,0 +1,47 @@
+[{
+        "title": "FREE",
+        "class": {
+            "article": "plan",
+            "price": "plan__price"
+        },
+        "price": "$99/month",
+        "desc": "For hobby projects or small teams.",
+        "features": [
+            "1 Workspace",
+            "Unlimited Traffic",
+            "10GB Storage",
+            "Basic Support"
+        ]
+    },
+    {
+        "title": "RECOMMENDED",
+        "class": {
+            "article": "plan plan--highlighted",
+            "title": "plan__title plan__anotation",
+            "price": "plan__price"
+        },
+        "price": "$99/month",
+        "desc": "For ambitious projects.",
+        "features": [
+            "5 Workspaces",
+            "Unlimited Traffic",
+            "100GB Storage",
+            "Plus Support"
+        ]
+    },
+    {
+        "title": "PREMIUM",
+        "class": {
+            "article": "plan",
+            "price": "plan__price"
+        },
+        "price": "$99/month",
+        "desc": "Your enterprise solution.",
+        "features": [
+            "10 Workspace",
+            "Unlimited Traffic",
+            "500GB Storage",
+            "Basic Support"
+        ]
+    }
+]

@@ -1,8 +1,14 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
 <dom-module id="plans-comp">
     <template>
-        <link rel="stylesheet" type="text/css" href="./src/pgn-app/comp/css/plan.css">
+        <iron-ajax id ="articlesRequest" 
+        auto url="http://localhost:3000/articles" headers='{"X-Requested-With": "XMLHttpRequest"}' 
+        handle-as="json"
+        on-response = "handleArticle"></iron-ajax>
+        <link rel="stylesheet" type="text/css" href="./src/pgn-app/assets/css/plan.css">
+        <div>{{localize('hello', 'name', 'Batman')}}</div>
         <section id="plans">
             <h1 class="section-title">Choose Your Plan</h1>
             <div>
@@ -25,10 +31,16 @@
         </section>
     </template>
     <script>
-        class PlansComponent extends Polymer.Element {
-            static get is() {
-                return 'plans-comp';
-            }
+        Polymer({
+            is: 'plans-comp',
+
+            behaviors: [
+                Polymer.AppLocalizeBehavior
+            ],
+
+            handleArticle: function (data) {
+                this.articles = data.detail.response;
+            },
 
             handlePlanChange(event) {
                 var currentSelectedPlanIndex = event.currentTarget.id.split('_')[1];
@@ -37,103 +49,57 @@
                     this.resetPlanClasses(this.lastSelectedPlanIndex, 'high');
                     this.set('lastSelectedPlanIndex', currentSelectedPlanIndex);
                 }
-            }
+            },
 
             resetPlanClasses(index, type) {
                 var path = this.planClassPath.replace('-', index),
-                        articleClass = path + '.article',
-                        titleClass = path + '.title',
-                        priceClass = path + '.price';
-                    this.set(articleClass, type === 'normal' ? this.plan_highlighted.article: this.plan_normal.article);
-                    this.set(priceClass, type === 'normal' ? this.plan_highlighted.price: this.plan_normal.price);
-                    this.set(titleClass, type === 'normal' ? this.plan_highlighted.title: this.plan_normal.title);
-            }
+                    articleClass = path + '.article',
+                    titleClass = path + '.title',
+                    priceClass = path + '.price';
+                this.set(articleClass, type === 'normal' ? this.plan_highlighted.article : this.plan_normal.article);
+                this.set(priceClass, type === 'normal' ? this.plan_highlighted.price : this.plan_normal.price);
+                this.set(titleClass, type === 'normal' ? this.plan_highlighted.title : this.plan_normal.title);
+            },
 
-            static get properties() {
-                return {
-                    planClassPath: {
-                        value() {
-                            return 'articles.-.class'
-                        }
-                    },
-                    plan_highlighted: {
-                        value() {
-                            return {
-                                article: 'plan plan--highlighted',
-                                title: 'plan__title plan__anotation',
-                                price: 'plan__price'
-                            }
-                        }
-                    },
-                    plan_normal: {
-                        value() {
-                            return {
-                                article: 'plan',
-                                title: 'plan__title',
-                                price: ''
-                            }
-                        }
-                    },
-                    lastSelectedPlanIndex: {
-                        value() {
-                            return 1;
-                        }
-                    },
-                    articles: {
-                        type: Array,
-                        value() {
-                            return [{
-                                    title: 'FREE',
-                                    class: {
-                                        article: 'plan',
-                                            price: 'plan__price'
-                                    },
-                                    price: '$99/month',
-                                    desc: 'For hobby projects or small teams.',
-                                    features: [
-                                        '1 Workspace',
-                                        'Unlimited Traffic',
-                                        '10GB Storage',
-                                        'Basic Support'
-                                    ]
-                                },
-                                {
-                                    title: 'RECOMMENDED',
-                                    class: {
-                                        article: 'plan plan--highlighted',
-                                            title: 'plan__title plan__anotation',
-                                            price: 'plan__price'
-                                    },
-                                    price: '$99/month',
-                                    desc: 'For ambitious projects.',
-                                    features: [
-                                        '5 Workspaces',
-                                        'Unlimited Traffic',
-                                        '100GB Storage',
-                                        'Plus Support'
-                                    ]
-                                },
-                                {
-                                    title: 'PREMIUM',
-                                    class: {
-                                        article: 'plan',
-                                            price: 'plan__price'
-                                    },
-                                    price: '$99/month',
-                                    desc: 'Your enterprise solution.',
-                                    features: [
-                                        '10 Workspace',
-                                        'Unlimited Traffic',
-                                        '500GB Storage',
-                                        'Basic Support'
-                                    ]
-                                }
-                            ];
+            properties: {
+                language: {
+                    value: 'en'
+                },
+                attached: function () {
+                    this.loadResources(this.resolveUrl('locales.json'));
+                },
+                planClassPath: {
+                    value() {
+                        return 'articles.-.class'
+                    }
+                },
+                plan_highlighted: {
+                    value() {
+                        return {
+                            article: 'plan plan--highlighted',
+                            title: 'plan__title plan__anotation',
+                            price: 'plan__price'
                         }
                     }
+                },
+                plan_normal: {
+                    value() {
+                        return {
+                            article: 'plan',
+                            title: 'plan__title',
+                            price: ''
+                        }
+                    }
+                },
+                lastSelectedPlanIndex: {
+                    value() {
+                        return 1;
+                    }
+                },
+                articles: {
+                    type: Array
                 }
             }
-        }
-        window.customElements.define(PlansComponent.is, PlansComponent);
+        });
     </script>
 </dom-module>

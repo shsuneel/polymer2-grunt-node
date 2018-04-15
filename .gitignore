@@ -3,6 +3,5 @@ npm-debug.log*
 # Dependency directories
 node_modules/
 bower_components/
-src/pgn-app/course/
-src/pgn-app/sample/
-src/pgn-app/comp/css/
+src/pgn-app/assets/css/
+build/

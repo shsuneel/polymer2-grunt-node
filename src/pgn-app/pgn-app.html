@@ -9,7 +9,7 @@
 <link rel="lazy-import" href="./pages/about-us.html">
 <dom-module id="pgn-app">
   <template>
-    <link rel="stylesheet" type="text/css" href="./src/pgn-app/comp/css/app.css">
+    <link rel="stylesheet" type="text/css" href="./src/pgn-app/assets/css/app.css">
     
     <!-- route configration -->
     <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
@@ -36,10 +36,6 @@
       }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'pgn-app'
-          },
           page: { // page  change  event listener 
             type: String,
             reflectToAttribute: true,
