@@ -1,4 +1,3 @@
-<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <dom-module id="footer-comp">
     <template>
         <link rel="stylesheet" type="text/css" href="./src/pgn-app/assets/css/footer.css">
@@ -6,10 +5,10 @@
             <nav>
                 <ul class="main-footer__links">
                     <li class="main-footer__link">
-                        <a href="">Support</a>
+                        <a href="">{{localize('SUPPORT')}}</a>
                     </li>
                     <li class="main-footer__link">
-                        <a href="">Terms of Use</a>
+                        <a href="">{{localize('TERMS_USE')}}</a>
                     </li>
                 </ul>
             </nav>
@@ -17,12 +16,13 @@
         
     </template>
     <script>
-        class FooterComponent extends Polymer.Element {
-            static get is() {
-                return 'footer-comp'
-            }
-        }
-        window.customElements.define(FooterComponent.is, FooterComponent);
+         Polymer({
+            is: 'footer-comp',
+
+            behaviors: [
+                Polymer.AppLocalizeBehavior
+            ]
+        })
     </script>
 
 </dom-module>

@@ -9,13 +9,13 @@ function getArticles(callbackFunc) {
             "article": "plan",
             "price": "plan__price"
         },
-        "price": "$99/month",
-        "desc": "For hobby projects or small teams.",
+        "price": "$99",
+        "desc": "FOR_HOBBY",
         "features": [
             "1 Workspace",
-            "Unlimited Traffic",
-            "10GB Storage",
-            "Basic Support"
+            "UNLTD_TRF",
+            "10",
+            "BASIC_SUPPORT"
         ]
     },
     {
@@ -25,13 +25,13 @@ function getArticles(callbackFunc) {
             "title": "plan__title plan__anotation",
             "price": "plan__price"
         },
-        "price": "$99/month",
-        "desc": "For ambitious projects.",
+        "price": "$99",
+        "desc": "AMB_PROJECTS",
         "features": [
-            "5 Workspaces",
-            "Unlimited Traffic",
-            "100GB Storage",
-            "Plus Support"
+            "5",
+            "UNLTD_TRF",
+            "100",
+            "PLUS_SUPPORT"
         ]
     },
     {
@@ -40,13 +40,13 @@ function getArticles(callbackFunc) {
             "article": "plan",
             "price": "plan__price"
         },
-        "price": "$99/month",
-        "desc": "Your enterprise solution.",
+        "price": "$99",
+        "desc": "ENT_SOL",
         "features": [
-            "10 Workspace",
-            "Unlimited Traffic",
-            "500GB Storage",
-            "Basic Support"
+            "10 Workspaces",
+            "UNLTD_TRF",
+            "500",
+            "BASIC_SUPPORT"
         ]
     }
 ];

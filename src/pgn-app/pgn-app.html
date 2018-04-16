@@ -3,77 +3,81 @@
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower_components/app-localize-behavior/app-localize-behavior.html">
 <link rel="import" href="./comp/header.html">
 <link rel="import" href="./comp/footer.html">
-<link rel="lazy-import" href="./pages/home.html">
-<link rel="lazy-import" href="./pages/about-us.html">
+<link rel="import" href="./pages/home.html">
+<link rel="import" href="./pages/about-us.html">
 <dom-module id="pgn-app">
   <template>
     <link rel="stylesheet" type="text/css" href="./src/pgn-app/assets/css/app.css">
-    
     <!-- route configration -->
     <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
     <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
-
     <!-- header -->
-    <header-comp></header-comp>
+    <header-comp language="[[language]]" resources="[[resources]]"></header-comp>
     <!-- Content here - pages -->
     <main>
       <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
-        <home-page name="home"></home-page>
-        <aboutus-page name="about-us"></aboutus-page>
+        <home-page name="home" language="[[language]]" resources="[[resources]]"></home-page>
+        <aboutus-page language="[[language]]" resources="[[resources]]" name="about-us"></aboutus-page>
       </iron-pages>
     </main>
     <!-- footer -->
-    <footer-comp></footer-comp>
-  
+    <footer-comp language="[[language]]" resources="[[resources]]"></footer-comp>
+
   </template>
 
   <script>
-    class PgnApp extends Polymer.Element {
-      static get is() {
-        return 'pgn-app';
-      }
-      static get properties() {
-        return {
-          page: { // page  change  event listener 
-            type: String,
-            reflectToAttribute: true,
-            observer: '_pageChanged',
-          },
-          routeData: Object,
-          subroute: Object,
-          rootPath: String,
-        };
-      }
+    Polymer({
+      is: 'pgn-app',
+
+      behaviors: [
+        Polymer.AppLocalizeBehavior
+      ],
+
       
+      properties: {
+        page: { // page  change  event listener 
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged',
+        },
+        routeData: Object,
+        subroute: Object,
+        rootPath: String,
+      },
+
       // add observers here 
-      static get observers() {
-        return [
-          '_routePageChanged(routeData.page)',
-        ];
-      }
+      observers: [
+        '_routePageChanged(routeData.page)'
+      ],
 
       // page change handler
-      _routePageChanged(page) {
+      _routePageChanged: function (page) {
         this.page = page || 'home';
-      }
+      },
 
-      _pageChanged(page) {
+      _pageChanged: function (page) {
         const resolvedPageUrl = this.resolveUrl('pages/' + page + '.html');
         Polymer.importHref(
           resolvedPageUrl,
           null,
           this._showPage404.bind(this),
           true);
-      }
+      },
 
-      _showPage404() {
+      _showPage404: function () {
         this.page = 'pagenotfound';
-      }
+      },
 
-    }
-    window.customElements.define(PgnApp.is, PgnApp);
+      attached: function () {
+        this.loadResources(this.resolveUrl('../pgn-app/assets/stub/locales.json'));
+        this.addEventListener('langchange', function(e) {
+            this.language = e.detail;
+        })
+      }
+    })
   </script>
 
 </dom-module>

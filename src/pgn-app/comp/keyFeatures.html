@@ -1,38 +1,37 @@
-<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 <dom-module id="key-features-comp">
     <template>
         <link rel="stylesheet" type="text/css" href="./src/pgn-app/assets/css/keyFeatures.css">
         <section id="key-features">
-            <h1 class="section-title">Many Good Reason to stick around</h1>
+            <h1 class="section-title">{{localize('GOOD_REASON')}}</h1>
             <ul class="key-features__list">
                 <li class="key-feature">
                     <div class="key-feature__image">
 
                     </div>
-                    <p class="key-feature__description">3,4,444 Trusting Customers</p>
+                    <p class="key-feature__description">3,4,444 {{localize('TRUST_CUSTOMERS')}}</p>
                 </li>
                 <li class="key-feature">
                     <div class="key-feature__image">
 
                     </div>
-                    <p class="key-feature__description">3,4,444 Uptime gurantee</p>
+                    <p class="key-feature__description">3,4,444 {{localize('UPTIME_GURANTEE')}}</p>
                 </li>
                 <li class="key-feature">
                     <div class="key-feature__image">
 
                     </div>
-                    <p class="key-feature__description">Lighting Fast CDN</p>
+                    <p class="key-feature__description">{{localize('LIGHTNING_FAST')}}</p>
                 </li>
             </ul>
         </section>
     </template>
     <script>
-        class KeyFeaturesComponent extends Polymer.Element {
-            static get is() {
-                return 'key-features-comp';
-            }
-        }
-        window.customElements.define(KeyFeaturesComponent.is, KeyFeaturesComponent);
+        Polymer({
+            is: 'key-features-comp',
+
+            behaviors: [
+                Polymer.AppLocalizeBehavior
+            ]
+        })
     </script>
 </dom-module>

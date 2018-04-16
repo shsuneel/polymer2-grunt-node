@@ -1,18 +1,16 @@
-<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 <dom-module id="product-overview-comp">
     <template>
         <link rel="stylesheet" type="text/css" href="./src/pgn-app/assets/css/productOverview.css">
         <section id="product-overview">
-                <h1>Get the freedom you deserve.</h1>
-              </section>
+            <h1>{{localize('FREEDOM_TITLE')}}</h1>
+        </section>
     </template>
     <script>
-        class ProductOverviewComponent extends Polymer.Element {
-            static get is() {
-                return 'product-overview-comp';
-            }
-        }
-        window.customElements.define(ProductOverviewComponent.is, ProductOverviewComponent);
+        Polymer({
+            is: 'product-overview-comp',
+            behaviors: [
+                Polymer.AppLocalizeBehavior
+            ]
+        })
     </script>
 </dom-module>

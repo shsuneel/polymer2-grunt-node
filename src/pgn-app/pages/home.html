@@ -1,4 +1,3 @@
-<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../comp/productOverview.html">
 <link rel="import" href="../comp/plans.html">
 <link rel="import" href="../comp/keyFeatures.html">
@@ -6,15 +5,16 @@
 <dom-module id="home-page">
   <template>
       <product-overview-comp></product-overview-comp>
-      <plans-comp></plans-comp>
-      <key-features-comp></key-features-comp>
+      <plans-comp language="[[language]]" resources="[[resources]]" ></plans-comp>
+      <key-features-comp language="[[language]]" resources="[[resources]]"></key-features-comp>
   </template>
 
   <script>
-    class HomePage extends Polymer.Element {
-      static get is() { return 'home-page'; }
-    }
-
-    window.customElements.define(HomePage.is, HomePage);
+    Polymer({
+      is: 'home-page',
+      behaviors: [
+        Polymer.AppLocalizeBehavior
+      ]
+    })
   </script>
 </dom-module>

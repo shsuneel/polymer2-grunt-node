@@ -1,29 +1,26 @@
-<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
 <dom-module id="plans-comp">
     <template>
-        <iron-ajax id ="articlesRequest" 
-        auto url="http://localhost:3000/articles" headers='{"X-Requested-With": "XMLHttpRequest"}' 
-        handle-as="json"
-        on-response = "handleArticle"></iron-ajax>
+        <iron-ajax id="articlesRequest" auto url="http://localhost:3000/articles" headers='{"X-Requested-With": "XMLHttpRequest"}'
+            handle-as="json" on-response="handleArticle"></iron-ajax>
+
         <link rel="stylesheet" type="text/css" href="./src/pgn-app/assets/css/plan.css">
-        <div>{{localize('hello', 'name', 'Batman')}}</div>
         <section id="plans">
-            <h1 class="section-title">Choose Your Plan</h1>
+            <h1 class="section-title">{{localize('CHOOSE_YOUR_PLAN')}}</h1>
             <div>
                 <template is="dom-repeat" items={{articles}}>
                     <article id="article_{{item.title}}" class$="[[item.class.article]]">
-                        <h1 class$=[[item.class.title]]>{{item.title}}</h1>
-                        <h2 class$="[[item.class.price]]">{{item.price}}</h2>
-                        <h3>{{item.desc}}</h3>
+                        <h1 class$=[[item.class.title]]>{{localize(item.title)}}</h1>
+                        <h2 class$="[[item.class.price]]">{{item.price}}/{{localize('MONTH')}}</h2>
+                        <h3>{{localize(item.desc)}}</h3>
                         <ul class="plan__features">
                             <template is="dom-repeat" items={{item.features}}>
-                                <li>{{item}}</li>
+                                <li>{{localize(item)}}</li>
                             </template>
                         </ul>
                         <div>
-                            <button id="{{item.title}}_{{index}}" on-click="handlePlanChange" class="button">CHOOSE PLAN</button>
+                            <button id="{{item.title}}_{{index}}" on-click="handlePlanChange" class="button">{{localize('CHOOSE_PLAN')}}</button>
                         </div>
                     </article>
                 </template>
@@ -38,36 +35,13 @@
                 Polymer.AppLocalizeBehavior
             ],
 
-            handleArticle: function (data) {
-                this.articles = data.detail.response;
-            },
-
-            handlePlanChange(event) {
-                var currentSelectedPlanIndex = event.currentTarget.id.split('_')[1];
-                if (currentSelectedPlanIndex !== this.lastSelectedPlanIndex) {
-                    this.resetPlanClasses(currentSelectedPlanIndex, 'normal');
-                    this.resetPlanClasses(this.lastSelectedPlanIndex, 'high');
-                    this.set('lastSelectedPlanIndex', currentSelectedPlanIndex);
-                }
-            },
-
-            resetPlanClasses(index, type) {
-                var path = this.planClassPath.replace('-', index),
-                    articleClass = path + '.article',
-                    titleClass = path + '.title',
-                    priceClass = path + '.price';
-                this.set(articleClass, type === 'normal' ? this.plan_highlighted.article : this.plan_normal.article);
-                this.set(priceClass, type === 'normal' ? this.plan_highlighted.price : this.plan_normal.price);
-                this.set(titleClass, type === 'normal' ? this.plan_highlighted.title : this.plan_normal.title);
-            },
-
             properties: {
-                language: {
-                    value: 'en'
+                resources: {
+                    type: Object
                 },
-                attached: function () {
-                    this.loadResources(this.resolveUrl('locales.json'));
-                },
+
+                
+
                 planClassPath: {
                     value() {
                         return 'articles.-.class'
@@ -99,6 +73,29 @@
                 articles: {
                     type: Array
                 }
+            },
+
+            handleArticle: function (data) {
+                this.articles = data.detail.response;
+            },
+
+            handlePlanChange(event) {
+                var currentSelectedPlanIndex = Number(event.currentTarget.id.split('_')[1]);
+                if (currentSelectedPlanIndex !== this.lastSelectedPlanIndex) {
+                    this.resetPlanClasses(currentSelectedPlanIndex, 'normal');
+                    this.resetPlanClasses(this.lastSelectedPlanIndex, 'high');
+                    this.set('lastSelectedPlanIndex', currentSelectedPlanIndex);
+                }
+            },
+
+            resetPlanClasses(index, type) {
+                var path = this.planClassPath.replace('-', index),
+                    articleClass = path + '.article',
+                    titleClass = path + '.title',
+                    priceClass = path + '.price';
+                this.set(articleClass, type === 'normal' ? this.plan_highlighted.article : this.plan_normal.article);
+                this.set(priceClass, type === 'normal' ? this.plan_highlighted.price : this.plan_normal.price);
+                this.set(titleClass, type === 'normal' ? this.plan_highlighted.title : this.plan_normal.title);
             }
         });
     </script>

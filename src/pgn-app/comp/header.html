@@ -1,35 +1,42 @@
-<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <dom-module id="header-comp">
     <template>
         <link rel="stylesheet" type="text/css" href="./src/pgn-app/assets/css/header.css">
         <header class="main-header">
                 <div>
                     <a href="index.html" class="main-header__brand">
-                        uHost
+                        PFC
                     </a>
                 </div>
                 <nav class="main-nav">
                     <ul class="main-nav__items">
                         <li class="main-nav__item">
-                            <a href="[[rootPath]]home">Packages</a>
+                            <a href="[[rootPath]]home">{{localize('PACKAGES')}}</a>
                         </li>
                         <li class="main-nav__item">
-                            <a href="[[rootPath]]about-us">Customers</a>
+                            <a href="[[rootPath]]about-us">{{localize('CUSTOMERS')}}</a>
                         </li>
                         <li class="main-nav__item main-nav__item--cta">
-                            <a href="start-hosting/index.html">Start Hosting</a>
+                            <select on-change="langChangeHandler">
+                                <option value="en">English</option>
+                                <option value="fr">{{localize('FRENCH')}}</option>
+                            </select>
                         </li>
                     </ul>
                 </nav>
             </header>
     </template>
     <script>
-        class HeaderComponent extends Polymer.Element {
-            static get is() {
-                return 'header-comp'
+         Polymer({
+            is: 'header-comp',
+
+            behaviors: [
+                Polymer.AppLocalizeBehavior
+            ],
+
+            langChangeHandler(event) {
+                this.dispatchEvent(new CustomEvent('langchange', {bubbles: true, composed: true, detail: event.currentTarget.value}));
             }
-        }
-        window.customElements.define(HeaderComponent.is, HeaderComponent);
+        })
     </script>
 
 </dom-module>
