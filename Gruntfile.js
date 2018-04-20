@@ -13,7 +13,8 @@
               'src/pgn-app/assets/css/productOverview.css': 'src/pgn-app/assets/scss/productOverview.scss',
               'src/pgn-app/assets/css/plan.css': 'src/pgn-app/assets/scss/plan.scss',
               'src/pgn-app/assets/css/footer.css': 'src/pgn-app/assets/scss/footer.scss',
-              'src/pgn-app/assets/css/keyFeatures.css': 'src/pgn-app/assets/scss/keyFeatures.scss'
+              'src/pgn-app/assets/css/keyFeatures.css': 'src/pgn-app/assets/scss/keyFeatures.scss',
+              'src/pgn-app/assets/css/about-us.css': 'src/pgn-app/assets/scss/about-us.scss'
             }
           }
         },
