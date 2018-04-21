@@ -1,0 +1,11 @@
+#product-overview {
+  background: url("../../assets/images/palampur_cardio.jpg");
+  width: 99%;
+  height: 500px;
+  padding: 10px;
+  color: black;
+}
+
+#product-overview h1 {
+  text-shadow: 2px 1px 15px white;
+}
